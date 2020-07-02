@@ -1,0 +1,21 @@
+{
+  "name": "abba-shenoda-pdf-proj",
+  "version": "1.0.0",
+  "description": "",
+  "main": "./src/app-files/Home/index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "lite-server",
+    "start": "npm run dev"
+  },
+  "author": "tony elia",
+  "license": "ISC",
+  "dependencies": {
+    "bootstrap": "^5.0.0-alpha1",
+    "bootstrap-icons": "^1.0.0-alpha5",
+    "popper.js": "^1.16.0"
+  },
+  "devDependencies": {
+    "lite-server": "^2.5.4"
+  }
+}
