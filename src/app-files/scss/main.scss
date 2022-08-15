@@ -1,0 +1,199 @@
+// BS5 utilities
+
+// $utilities: () !default;
+// $utilities: map-merge(
+//   (
+//     // more padding utility
+//     "padding": (
+//       property: width,
+//       class: pp,
+//       values: (
+//         6: 6rem,
+//         7: 7rem,
+//         8: 8rem,
+//         9: 9rem,
+//         10: 1rem,
+//         auto: auto
+//       )
+//     ),
+//     // ...
+//     "margin": (
+//       responsive: true,
+//       property: margin,
+//       class: mm,
+//       values: (
+//         6: 6rem,
+//         7: 7rem,
+//         8: 8rem,
+//         9: 9rem,
+//         10: 1rem,
+//         auto: auto
+//       )
+//     ),
+//     // ...
+//   ), $utilities);
+
+@import '../../../node_modules/bootstrap/scss/bootstrap.scss';
+@import '../../../node_modules/hamburgers/_sass/hamburgers/hamburgers.scss';
+// variables
+$sidebar-bg: #00AEEF;
+
+@font-face {
+    font-family: cairo;
+    src: url(../../assests/fonts/Cairo/Cairo-Light.ttf);
+}
+
+// mixins
+@mixin defaultPreset {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+* {
+    @include defaultPreset();
+}
+
+body {
+    height: 100vh;
+    font-family: cairo;
+    overflow-x: hidden;
+    @include defaultPreset();
+}
+
+/* Ripple effect */
+.ripple {
+    background-position: center;
+    transition: background 0.5s;
+  }
+  .ripple:hover {
+    background: #ffffff67 radial-gradient(circle, transparent 1%, #ffffff67 1%) center/15000%;
+  }
+  .ripple:active {
+    background-color: #ffffff2a;
+    background-size: 100%;
+    transition: background 0s;
+  }
+  
+.side-bar {
+    height: 100vh;
+    background-color: $sidebar-bg;
+    width: 300px;
+    position: fixed;
+    display: block;
+    top: 0;
+    left: -300px;
+    transition: .25s;
+    color: white;
+    z-index: 1;
+    overflow-x: hidden;
+    margin-top: 60px;
+}
+
+.side-bar.open {
+    left: 0;
+}
+
+#main {
+    max-width: 100%;
+    min-height: 100%;
+    transition: margin-left .25s;
+    margin-left: 0;
+    position: relative;
+    nav {
+        width: 100%;
+        color: floralwhite;
+        background-color: #30475e;
+        flex-direction: row;
+        padding: .5rem .7rem;
+        position: fixed;
+        top: 0;
+        right: 0;
+        z-index: 1000;
+
+        #NavName {
+            width: 100px;
+            #Layer_1 {
+                fill: white;
+            }
+        }
+        .side-btn {
+            position: absolute;
+            left: 8px;
+            transform: scale(.8);
+            #nav-icon1 {
+                width: 35px;
+                height: 22.5px;
+                position: relative;
+                margin: 5px auto;
+                transform: rotate(0deg);
+                transition: 0.5s ease-in-out;
+                cursor: pointer;
+            }
+            #nav-icon1 span {
+                display: block;
+                position: absolute;
+                height: 2px;
+                width: 100%;
+                background: floralwhite;
+                border-radius: 3px;
+                opacity: 1;
+                left: 0;
+                transform: rotate(0deg);
+                transition: 0.25s ease-in-out;
+            }
+            #nav-icon1 span:nth-child(1) {
+                top: 0px;
+            }
+    
+            #nav-icon1 span:nth-child(2) {
+              top: 11.25px;
+            }
+    
+            #nav-icon1 span:nth-child(3) {
+              top: 22.5px;
+            }
+    
+            #nav-icon1.open span:nth-child(1) {
+              top: 11.25px;
+              transform: rotate(135deg);
+            }
+    
+            #nav-icon1.open span:nth-child(2) {
+              opacity: 0;
+              left: -60px;
+            }
+    
+            #nav-icon1.open span:nth-child(3) {
+              top: 11.25px;
+              transform: rotate(-135deg);
+            }
+        }
+    }
+    .body-content {
+        footer {
+            position: absolute;
+            bottom: 0;
+        }
+    }
+}
+
+#main.open {
+    margin-left: 300px;
+    nav {
+        margin-left: 300px;
+    }
+}
+
+@media (max-width: 750px) {
+    #main.open {
+        margin-left: 250px;
+    }
+    .side-bar {
+        width: 250px;
+        left: -250px;
+    }
+    .side-bar.open {
+        left: 0;
+    }
+}
